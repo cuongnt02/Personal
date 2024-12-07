@@ -23,9 +23,14 @@ class MainActivity : AppCompatActivity() {
         binding.recordCardContent.text = recordViewModel.recordContent
 
         binding.recordCard.setOnClickListener {
-            Toast.makeText(this@MainActivity, "Record touched", Toast.LENGTH_SHORT).show()
+            intentToRecordDetail(recordViewModel.recordTitle, recordViewModel.recordContent, recordViewModel.recordDate.toString())
         }
 
         setContentView(binding.root)
+    }
+
+    private fun intentToRecordDetail(title: String, content: String, date: String) {
+        val intent = RecordDetailActivity.newIntent(this@MainActivity, title, content, date)
+        startActivity(intent)
     }
 }
